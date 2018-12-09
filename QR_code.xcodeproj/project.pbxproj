@@ -8,6 +8,65 @@
 
 /* Begin PBXBuildFile section */
 		F73211AD21BB9AD9004E6C10 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F73211AC21BB9AD9004E6C10 /* main.cpp */; };
+		F73211EE21BB9B44004E6C10 /* libopencv_video.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211B421BB9B43004E6C10 /* libopencv_video.3.4.0.dylib */; };
+		F73211EF21BB9B44004E6C10 /* libImplDesktopSharing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211B521BB9B43004E6C10 /* libImplDesktopSharing.dylib */; };
+		F73211F021BB9B44004E6C10 /* libACEXML-5.6.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211B621BB9B43004E6C10 /* libACEXML-5.6.9.dylib */; };
+		F73211F121BB9B44004E6C10 /* libACE-5.6.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211B721BB9B43004E6C10 /* libACE-5.6.9.dylib */; };
+		F73211F221BB9B44004E6C10 /* libImplInstantMessenger.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211B821BB9B43004E6C10 /* libImplInstantMessenger.dylib */; };
+		F73211F321BB9B44004E6C10 /* libwx_mac_xrc-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211B921BB9B43004E6C10 /* libwx_mac_xrc-2.8.0.dylib */; };
+		F73211F421BB9B44004E6C10 /* libwx_base_carbon-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211BA21BB9B43004E6C10 /* libwx_base_carbon-2.8.0.dylib */; };
+		F73211F521BB9B44004E6C10 /* libImplAntivirus.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211BB21BB9B43004E6C10 /* libImplAntivirus.dylib */; };
+		F73211F621BB9B44004E6C10 /* libopencv_flann.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211BC21BB9B43004E6C10 /* libopencv_flann.3.4.0.dylib */; };
+		F73211F721BB9B44004E6C10 /* libopencv_core.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211BD21BB9B43004E6C10 /* libopencv_core.3.4.0.dylib */; };
+		F73211F821BB9B44004E6C10 /* libopencv_dnn.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211BE21BB9B43004E6C10 /* libopencv_dnn.3.4.0.dylib */; };
+		F73211F921BB9B44004E6C10 /* libImplBackupClient.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211BF21BB9B43004E6C10 /* libImplBackupClient.dylib */; };
+		F73211FA21BB9B44004E6C10 /* libImplVirtualMachine.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211C021BB9B43004E6C10 /* libImplVirtualMachine.dylib */; };
+		F73211FB21BB9B44004E6C10 /* libImplFirewall.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211C121BB9B43004E6C10 /* libImplFirewall.dylib */; };
+		F73211FC21BB9B44004E6C10 /* libwx_mac_core-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211C221BB9B43004E6C10 /* libwx_mac_core-2.8.0.dylib */; };
+		F73211FD21BB9B44004E6C10 /* libopencv_videoio.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211C321BB9B43004E6C10 /* libopencv_videoio.3.4.0.dylib */; };
+		F73211FE21BB9B44004E6C10 /* libwx_base_carbon_xml-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211C421BB9B43004E6C10 /* libwx_base_carbon_xml-2.8.0.dylib */; };
+		F73211FF21BB9B44004E6C10 /* libopencv_calib3d.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211C521BB9B43004E6C10 /* libopencv_calib3d.3.4.0.dylib */; };
+		F732120021BB9B44004E6C10 /* libImplPatchManagementAgent.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211C621BB9B43004E6C10 /* libImplPatchManagementAgent.dylib */; };
+		F732120121BB9B44004E6C10 /* libInodeSecurityAuth.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211C721BB9B43004E6C10 /* libInodeSecurityAuth.dylib */; };
+		F732120221BB9B44004E6C10 /* libACE.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211C821BB9B43004E6C10 /* libACE.dylib */; };
+		F732120321BB9B44004E6C10 /* libopencv_shape.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211C921BB9B43004E6C10 /* libopencv_shape.3.4.0.dylib */; };
+		F732120421BB9B44004E6C10 /* libImplBrowser.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211CA21BB9B43004E6C10 /* libImplBrowser.dylib */; };
+		F732120521BB9B44004E6C10 /* libdnet.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211CB21BB9B43004E6C10 /* libdnet.dylib */; };
+		F732120621BB9B44004E6C10 /* libACEXML.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211CC21BB9B43004E6C10 /* libACEXML.dylib */; };
+		F732120721BB9B44004E6C10 /* libImplUrlFiltering.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211CD21BB9B43004E6C10 /* libImplUrlFiltering.dylib */; };
+		F732120821BB9B44004E6C10 /* libInodeX1Pt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211CE21BB9B44004E6C10 /* libInodeX1Pt.dylib */; };
+		F732120921BB9B44004E6C10 /* libImplSystemManagement.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211CF21BB9B44004E6C10 /* libImplSystemManagement.dylib */; };
+		F732120A21BB9B44004E6C10 /* libwx_mac_aui-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211D021BB9B44004E6C10 /* libwx_mac_aui-2.8.0.dylib */; };
+		F732120B21BB9B44004E6C10 /* libwx_mac_richtext-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211D121BB9B44004E6C10 /* libwx_mac_richtext-2.8.0.dylib */; };
+		F732120C21BB9B44004E6C10 /* libCoreUtils.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211D221BB9B44004E6C10 /* libCoreUtils.dylib */; };
+		F732120D21BB9B44004E6C10 /* libopencv_videostab.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211D321BB9B44004E6C10 /* libopencv_videostab.3.4.0.dylib */; };
+		F732120E21BB9B44004E6C10 /* libdnet.0.0.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211D421BB9B44004E6C10 /* libdnet.0.0.0.dylib */; };
+		F732120F21BB9B44004E6C10 /* libACEXML_Parser.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211D521BB9B44004E6C10 /* libACEXML_Parser.dylib */; };
+		F732121021BB9B44004E6C10 /* libopencv_highgui.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211D621BB9B44004E6C10 /* libopencv_highgui.3.4.0.dylib */; };
+		F732121121BB9B44004E6C10 /* libopencv_imgproc.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211D721BB9B44004E6C10 /* libopencv_imgproc.3.4.0.dylib */; };
+		F732121221BB9B44004E6C10 /* libwx_mac_html-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211D821BB9B44004E6C10 /* libwx_mac_html-2.8.0.dylib */; };
+		F732121321BB9B44004E6C10 /* libopencv_objdetect.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211D921BB9B44004E6C10 /* libopencv_objdetect.3.4.0.dylib */; };
+		F732121421BB9B44004E6C10 /* libImplSoftwareProduct.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211DA21BB9B44004E6C10 /* libImplSoftwareProduct.dylib */; };
+		F732121521BB9B44004E6C10 /* libOesisCore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211DB21BB9B44004E6C10 /* libOesisCore.dylib */; };
+		F732121621BB9B44004E6C10 /* libopencv_photo.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211DC21BB9B44004E6C10 /* libopencv_photo.3.4.0.dylib */; };
+		F732121721BB9B44004E6C10 /* libtensorflow_framework.so in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211DD21BB9B44004E6C10 /* libtensorflow_framework.so */; };
+		F732121821BB9B44004E6C10 /* libImplP2p.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211DE21BB9B44004E6C10 /* libImplP2p.dylib */; };
+		F732121921BB9B44004E6C10 /* libopencv_superres.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211DF21BB9B44004E6C10 /* libopencv_superres.3.4.0.dylib */; };
+		F732121A21BB9B44004E6C10 /* libInodePortalPt.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211E021BB9B44004E6C10 /* libInodePortalPt.dylib */; };
+		F732121B21BB9B44004E6C10 /* libwx_mac_qa-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211E121BB9B44004E6C10 /* libwx_mac_qa-2.8.0.dylib */; };
+		F732121C21BB9B44004E6C10 /* libACEXML_Parser-5.6.9.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211E221BB9B44004E6C10 /* libACEXML_Parser-5.6.9.dylib */; };
+		F732121D21BB9B44004E6C10 /* libdnet.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211E321BB9B44004E6C10 /* libdnet.0.dylib */; };
+		F732121E21BB9B44004E6C10 /* libopencv_stitching.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211E421BB9B44004E6C10 /* libopencv_stitching.3.4.0.dylib */; };
+		F732121F21BB9B44004E6C10 /* libImplHDEncryption.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211E521BB9B44004E6C10 /* libImplHDEncryption.dylib */; };
+		F732122021BB9B44004E6C10 /* libopencv_ml.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211E621BB9B44004E6C10 /* libopencv_ml.3.4.0.dylib */; };
+		F732122121BB9B44004E6C10 /* libImplAntiphishing.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211E721BB9B44004E6C10 /* libImplAntiphishing.dylib */; };
+		F732122221BB9B44004E6C10 /* libImplVpnClient.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211E821BB9B44004E6C10 /* libImplVpnClient.dylib */; };
+		F732122321BB9B44004E6C10 /* libopencv_imgcodecs.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211E921BB9B44004E6C10 /* libopencv_imgcodecs.3.4.0.dylib */; };
+		F732122421BB9B44004E6C10 /* libopencv_features2d.3.4.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211EA21BB9B44004E6C10 /* libopencv_features2d.3.4.0.dylib */; };
+		F732122521BB9B44004E6C10 /* libwx_base_carbon_net-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211EB21BB9B44004E6C10 /* libwx_base_carbon_net-2.8.0.dylib */; };
+		F732122621BB9B44004E6C10 /* libInodeUtility.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211EC21BB9B44004E6C10 /* libInodeUtility.dylib */; };
+		F732122721BB9B44004E6C10 /* libwx_mac_adv-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211ED21BB9B44004E6C10 /* libwx_mac_adv-2.8.0.dylib */; };
+		F7EF9B5321BCE7EF0090FC63 /* QR_detect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7EF9B5121BCE7EF0090FC63 /* QR_detect.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -25,6 +84,67 @@
 /* Begin PBXFileReference section */
 		F73211A921BB9AD9004E6C10 /* QR_code */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = QR_code; sourceTree = BUILT_PRODUCTS_DIR; };
 		F73211AC21BB9AD9004E6C10 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		F73211B421BB9B43004E6C10 /* libopencv_video.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_video.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_video.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211B521BB9B43004E6C10 /* libImplDesktopSharing.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplDesktopSharing.dylib; path = ../../../../../../usr/local/lib/libImplDesktopSharing.dylib; sourceTree = "<group>"; };
+		F73211B621BB9B43004E6C10 /* libACEXML-5.6.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libACEXML-5.6.9.dylib"; path = "../../../../../../usr/local/lib/libACEXML-5.6.9.dylib"; sourceTree = "<group>"; };
+		F73211B721BB9B43004E6C10 /* libACE-5.6.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libACE-5.6.9.dylib"; path = "../../../../../../usr/local/lib/libACE-5.6.9.dylib"; sourceTree = "<group>"; };
+		F73211B821BB9B43004E6C10 /* libImplInstantMessenger.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplInstantMessenger.dylib; path = ../../../../../../usr/local/lib/libImplInstantMessenger.dylib; sourceTree = "<group>"; };
+		F73211B921BB9B43004E6C10 /* libwx_mac_xrc-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_mac_xrc-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_mac_xrc-2.8.0.dylib"; sourceTree = "<group>"; };
+		F73211BA21BB9B43004E6C10 /* libwx_base_carbon-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_base_carbon-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_base_carbon-2.8.0.dylib"; sourceTree = "<group>"; };
+		F73211BB21BB9B43004E6C10 /* libImplAntivirus.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplAntivirus.dylib; path = ../../../../../../usr/local/lib/libImplAntivirus.dylib; sourceTree = "<group>"; };
+		F73211BC21BB9B43004E6C10 /* libopencv_flann.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_flann.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_flann.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211BD21BB9B43004E6C10 /* libopencv_core.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_core.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_core.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211BE21BB9B43004E6C10 /* libopencv_dnn.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_dnn.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_dnn.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211BF21BB9B43004E6C10 /* libImplBackupClient.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplBackupClient.dylib; path = ../../../../../../usr/local/lib/libImplBackupClient.dylib; sourceTree = "<group>"; };
+		F73211C021BB9B43004E6C10 /* libImplVirtualMachine.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplVirtualMachine.dylib; path = ../../../../../../usr/local/lib/libImplVirtualMachine.dylib; sourceTree = "<group>"; };
+		F73211C121BB9B43004E6C10 /* libImplFirewall.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplFirewall.dylib; path = ../../../../../../usr/local/lib/libImplFirewall.dylib; sourceTree = "<group>"; };
+		F73211C221BB9B43004E6C10 /* libwx_mac_core-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_mac_core-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_mac_core-2.8.0.dylib"; sourceTree = "<group>"; };
+		F73211C321BB9B43004E6C10 /* libopencv_videoio.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videoio.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_videoio.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211C421BB9B43004E6C10 /* libwx_base_carbon_xml-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_base_carbon_xml-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_base_carbon_xml-2.8.0.dylib"; sourceTree = "<group>"; };
+		F73211C521BB9B43004E6C10 /* libopencv_calib3d.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_calib3d.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_calib3d.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211C621BB9B43004E6C10 /* libImplPatchManagementAgent.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplPatchManagementAgent.dylib; path = ../../../../../../usr/local/lib/libImplPatchManagementAgent.dylib; sourceTree = "<group>"; };
+		F73211C721BB9B43004E6C10 /* libInodeSecurityAuth.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libInodeSecurityAuth.dylib; path = ../../../../../../usr/local/lib/libInodeSecurityAuth.dylib; sourceTree = "<group>"; };
+		F73211C821BB9B43004E6C10 /* libACE.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libACE.dylib; path = ../../../../../../usr/local/lib/libACE.dylib; sourceTree = "<group>"; };
+		F73211C921BB9B43004E6C10 /* libopencv_shape.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_shape.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_shape.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211CA21BB9B43004E6C10 /* libImplBrowser.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplBrowser.dylib; path = ../../../../../../usr/local/lib/libImplBrowser.dylib; sourceTree = "<group>"; };
+		F73211CB21BB9B43004E6C10 /* libdnet.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdnet.dylib; path = ../../../../../../usr/local/lib/libdnet.dylib; sourceTree = "<group>"; };
+		F73211CC21BB9B43004E6C10 /* libACEXML.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libACEXML.dylib; path = ../../../../../../usr/local/lib/libACEXML.dylib; sourceTree = "<group>"; };
+		F73211CD21BB9B43004E6C10 /* libImplUrlFiltering.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplUrlFiltering.dylib; path = ../../../../../../usr/local/lib/libImplUrlFiltering.dylib; sourceTree = "<group>"; };
+		F73211CE21BB9B44004E6C10 /* libInodeX1Pt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libInodeX1Pt.dylib; path = ../../../../../../usr/local/lib/libInodeX1Pt.dylib; sourceTree = "<group>"; };
+		F73211CF21BB9B44004E6C10 /* libImplSystemManagement.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplSystemManagement.dylib; path = ../../../../../../usr/local/lib/libImplSystemManagement.dylib; sourceTree = "<group>"; };
+		F73211D021BB9B44004E6C10 /* libwx_mac_aui-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_mac_aui-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_mac_aui-2.8.0.dylib"; sourceTree = "<group>"; };
+		F73211D121BB9B44004E6C10 /* libwx_mac_richtext-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_mac_richtext-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_mac_richtext-2.8.0.dylib"; sourceTree = "<group>"; };
+		F73211D221BB9B44004E6C10 /* libCoreUtils.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libCoreUtils.dylib; path = ../../../../../../usr/local/lib/libCoreUtils.dylib; sourceTree = "<group>"; };
+		F73211D321BB9B44004E6C10 /* libopencv_videostab.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_videostab.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_videostab.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211D421BB9B44004E6C10 /* libdnet.0.0.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdnet.0.0.0.dylib; path = ../../../../../../usr/local/lib/libdnet.0.0.0.dylib; sourceTree = "<group>"; };
+		F73211D521BB9B44004E6C10 /* libACEXML_Parser.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libACEXML_Parser.dylib; path = ../../../../../../usr/local/lib/libACEXML_Parser.dylib; sourceTree = "<group>"; };
+		F73211D621BB9B44004E6C10 /* libopencv_highgui.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_highgui.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_highgui.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211D721BB9B44004E6C10 /* libopencv_imgproc.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgproc.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_imgproc.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211D821BB9B44004E6C10 /* libwx_mac_html-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_mac_html-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_mac_html-2.8.0.dylib"; sourceTree = "<group>"; };
+		F73211D921BB9B44004E6C10 /* libopencv_objdetect.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_objdetect.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_objdetect.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211DA21BB9B44004E6C10 /* libImplSoftwareProduct.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplSoftwareProduct.dylib; path = ../../../../../../usr/local/lib/libImplSoftwareProduct.dylib; sourceTree = "<group>"; };
+		F73211DB21BB9B44004E6C10 /* libOesisCore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libOesisCore.dylib; path = ../../../../../../usr/local/lib/libOesisCore.dylib; sourceTree = "<group>"; };
+		F73211DC21BB9B44004E6C10 /* libopencv_photo.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_photo.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_photo.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211DD21BB9B44004E6C10 /* libtensorflow_framework.so */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libtensorflow_framework.so; path = ../../../../../../usr/local/Cellar/libtensorflow/1.12.0/lib/libtensorflow_framework.so; sourceTree = "<group>"; };
+		F73211DE21BB9B44004E6C10 /* libImplP2p.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplP2p.dylib; path = ../../../../../../usr/local/lib/libImplP2p.dylib; sourceTree = "<group>"; };
+		F73211DF21BB9B44004E6C10 /* libopencv_superres.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_superres.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_superres.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211E021BB9B44004E6C10 /* libInodePortalPt.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libInodePortalPt.dylib; path = ../../../../../../usr/local/lib/libInodePortalPt.dylib; sourceTree = "<group>"; };
+		F73211E121BB9B44004E6C10 /* libwx_mac_qa-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_mac_qa-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_mac_qa-2.8.0.dylib"; sourceTree = "<group>"; };
+		F73211E221BB9B44004E6C10 /* libACEXML_Parser-5.6.9.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libACEXML_Parser-5.6.9.dylib"; path = "../../../../../../usr/local/lib/libACEXML_Parser-5.6.9.dylib"; sourceTree = "<group>"; };
+		F73211E321BB9B44004E6C10 /* libdnet.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libdnet.0.dylib; path = ../../../../../../usr/local/lib/libdnet.0.dylib; sourceTree = "<group>"; };
+		F73211E421BB9B44004E6C10 /* libopencv_stitching.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_stitching.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_stitching.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211E521BB9B44004E6C10 /* libImplHDEncryption.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplHDEncryption.dylib; path = ../../../../../../usr/local/lib/libImplHDEncryption.dylib; sourceTree = "<group>"; };
+		F73211E621BB9B44004E6C10 /* libopencv_ml.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_ml.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_ml.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211E721BB9B44004E6C10 /* libImplAntiphishing.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplAntiphishing.dylib; path = ../../../../../../usr/local/lib/libImplAntiphishing.dylib; sourceTree = "<group>"; };
+		F73211E821BB9B44004E6C10 /* libImplVpnClient.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libImplVpnClient.dylib; path = ../../../../../../usr/local/lib/libImplVpnClient.dylib; sourceTree = "<group>"; };
+		F73211E921BB9B44004E6C10 /* libopencv_imgcodecs.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_imgcodecs.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_imgcodecs.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211EA21BB9B44004E6C10 /* libopencv_features2d.3.4.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libopencv_features2d.3.4.0.dylib; path = ../../../../../../usr/local/lib/libopencv_features2d.3.4.0.dylib; sourceTree = "<group>"; };
+		F73211EB21BB9B44004E6C10 /* libwx_base_carbon_net-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_base_carbon_net-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_base_carbon_net-2.8.0.dylib"; sourceTree = "<group>"; };
+		F73211EC21BB9B44004E6C10 /* libInodeUtility.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libInodeUtility.dylib; path = ../../../../../../usr/local/lib/libInodeUtility.dylib; sourceTree = "<group>"; };
+		F73211ED21BB9B44004E6C10 /* libwx_mac_adv-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_mac_adv-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_mac_adv-2.8.0.dylib"; sourceTree = "<group>"; };
+		F7EF9B5121BCE7EF0090FC63 /* QR_detect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = QR_detect.cpp; sourceTree = "<group>"; };
+		F7EF9B5221BCE7EF0090FC63 /* QR_detect.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = QR_detect.hpp; sourceTree = "<group>"; };
+		F7EF9B5421BCF1940090FC63 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -32,6 +152,64 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F73211EE21BB9B44004E6C10 /* libopencv_video.3.4.0.dylib in Frameworks */,
+				F73211EF21BB9B44004E6C10 /* libImplDesktopSharing.dylib in Frameworks */,
+				F73211F021BB9B44004E6C10 /* libACEXML-5.6.9.dylib in Frameworks */,
+				F73211F121BB9B44004E6C10 /* libACE-5.6.9.dylib in Frameworks */,
+				F73211F221BB9B44004E6C10 /* libImplInstantMessenger.dylib in Frameworks */,
+				F73211F321BB9B44004E6C10 /* libwx_mac_xrc-2.8.0.dylib in Frameworks */,
+				F73211F421BB9B44004E6C10 /* libwx_base_carbon-2.8.0.dylib in Frameworks */,
+				F73211F521BB9B44004E6C10 /* libImplAntivirus.dylib in Frameworks */,
+				F73211F621BB9B44004E6C10 /* libopencv_flann.3.4.0.dylib in Frameworks */,
+				F73211F721BB9B44004E6C10 /* libopencv_core.3.4.0.dylib in Frameworks */,
+				F73211F821BB9B44004E6C10 /* libopencv_dnn.3.4.0.dylib in Frameworks */,
+				F73211F921BB9B44004E6C10 /* libImplBackupClient.dylib in Frameworks */,
+				F73211FA21BB9B44004E6C10 /* libImplVirtualMachine.dylib in Frameworks */,
+				F73211FB21BB9B44004E6C10 /* libImplFirewall.dylib in Frameworks */,
+				F73211FC21BB9B44004E6C10 /* libwx_mac_core-2.8.0.dylib in Frameworks */,
+				F73211FD21BB9B44004E6C10 /* libopencv_videoio.3.4.0.dylib in Frameworks */,
+				F73211FE21BB9B44004E6C10 /* libwx_base_carbon_xml-2.8.0.dylib in Frameworks */,
+				F73211FF21BB9B44004E6C10 /* libopencv_calib3d.3.4.0.dylib in Frameworks */,
+				F732120021BB9B44004E6C10 /* libImplPatchManagementAgent.dylib in Frameworks */,
+				F732120121BB9B44004E6C10 /* libInodeSecurityAuth.dylib in Frameworks */,
+				F732120221BB9B44004E6C10 /* libACE.dylib in Frameworks */,
+				F732120321BB9B44004E6C10 /* libopencv_shape.3.4.0.dylib in Frameworks */,
+				F732120421BB9B44004E6C10 /* libImplBrowser.dylib in Frameworks */,
+				F732120521BB9B44004E6C10 /* libdnet.dylib in Frameworks */,
+				F732120621BB9B44004E6C10 /* libACEXML.dylib in Frameworks */,
+				F732120721BB9B44004E6C10 /* libImplUrlFiltering.dylib in Frameworks */,
+				F732120821BB9B44004E6C10 /* libInodeX1Pt.dylib in Frameworks */,
+				F732120921BB9B44004E6C10 /* libImplSystemManagement.dylib in Frameworks */,
+				F732120A21BB9B44004E6C10 /* libwx_mac_aui-2.8.0.dylib in Frameworks */,
+				F732120B21BB9B44004E6C10 /* libwx_mac_richtext-2.8.0.dylib in Frameworks */,
+				F732120C21BB9B44004E6C10 /* libCoreUtils.dylib in Frameworks */,
+				F732120D21BB9B44004E6C10 /* libopencv_videostab.3.4.0.dylib in Frameworks */,
+				F732120E21BB9B44004E6C10 /* libdnet.0.0.0.dylib in Frameworks */,
+				F732120F21BB9B44004E6C10 /* libACEXML_Parser.dylib in Frameworks */,
+				F732121021BB9B44004E6C10 /* libopencv_highgui.3.4.0.dylib in Frameworks */,
+				F732121121BB9B44004E6C10 /* libopencv_imgproc.3.4.0.dylib in Frameworks */,
+				F732121221BB9B44004E6C10 /* libwx_mac_html-2.8.0.dylib in Frameworks */,
+				F732121321BB9B44004E6C10 /* libopencv_objdetect.3.4.0.dylib in Frameworks */,
+				F732121421BB9B44004E6C10 /* libImplSoftwareProduct.dylib in Frameworks */,
+				F732121521BB9B44004E6C10 /* libOesisCore.dylib in Frameworks */,
+				F732121621BB9B44004E6C10 /* libopencv_photo.3.4.0.dylib in Frameworks */,
+				F732121721BB9B44004E6C10 /* libtensorflow_framework.so in Frameworks */,
+				F732121821BB9B44004E6C10 /* libImplP2p.dylib in Frameworks */,
+				F732121921BB9B44004E6C10 /* libopencv_superres.3.4.0.dylib in Frameworks */,
+				F732121A21BB9B44004E6C10 /* libInodePortalPt.dylib in Frameworks */,
+				F732121B21BB9B44004E6C10 /* libwx_mac_qa-2.8.0.dylib in Frameworks */,
+				F732121C21BB9B44004E6C10 /* libACEXML_Parser-5.6.9.dylib in Frameworks */,
+				F732121D21BB9B44004E6C10 /* libdnet.0.dylib in Frameworks */,
+				F732121E21BB9B44004E6C10 /* libopencv_stitching.3.4.0.dylib in Frameworks */,
+				F732121F21BB9B44004E6C10 /* libImplHDEncryption.dylib in Frameworks */,
+				F732122021BB9B44004E6C10 /* libopencv_ml.3.4.0.dylib in Frameworks */,
+				F732122121BB9B44004E6C10 /* libImplAntiphishing.dylib in Frameworks */,
+				F732122221BB9B44004E6C10 /* libImplVpnClient.dylib in Frameworks */,
+				F732122321BB9B44004E6C10 /* libopencv_imgcodecs.3.4.0.dylib in Frameworks */,
+				F732122421BB9B44004E6C10 /* libopencv_features2d.3.4.0.dylib in Frameworks */,
+				F732122521BB9B44004E6C10 /* libwx_base_carbon_net-2.8.0.dylib in Frameworks */,
+				F732122621BB9B44004E6C10 /* libInodeUtility.dylib in Frameworks */,
+				F732122721BB9B44004E6C10 /* libwx_mac_adv-2.8.0.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,6 +221,7 @@
 			children = (
 				F73211AB21BB9AD9004E6C10 /* QR_code */,
 				F73211AA21BB9AD9004E6C10 /* Products */,
+				F73211B321BB9B43004E6C10 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,8 +237,76 @@
 			isa = PBXGroup;
 			children = (
 				F73211AC21BB9AD9004E6C10 /* main.cpp */,
+				F7EF9B5121BCE7EF0090FC63 /* QR_detect.cpp */,
+				F7EF9B5221BCE7EF0090FC63 /* QR_detect.hpp */,
 			);
 			path = QR_code;
+			sourceTree = "<group>";
+		};
+		F73211B321BB9B43004E6C10 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F7EF9B5421BCF1940090FC63 /* Info.plist */,
+				F73211B721BB9B43004E6C10 /* libACE-5.6.9.dylib */,
+				F73211C821BB9B43004E6C10 /* libACE.dylib */,
+				F73211E221BB9B44004E6C10 /* libACEXML_Parser-5.6.9.dylib */,
+				F73211D521BB9B44004E6C10 /* libACEXML_Parser.dylib */,
+				F73211B621BB9B43004E6C10 /* libACEXML-5.6.9.dylib */,
+				F73211CC21BB9B43004E6C10 /* libACEXML.dylib */,
+				F73211D221BB9B44004E6C10 /* libCoreUtils.dylib */,
+				F73211D421BB9B44004E6C10 /* libdnet.0.0.0.dylib */,
+				F73211E321BB9B44004E6C10 /* libdnet.0.dylib */,
+				F73211CB21BB9B43004E6C10 /* libdnet.dylib */,
+				F73211E721BB9B44004E6C10 /* libImplAntiphishing.dylib */,
+				F73211BB21BB9B43004E6C10 /* libImplAntivirus.dylib */,
+				F73211BF21BB9B43004E6C10 /* libImplBackupClient.dylib */,
+				F73211CA21BB9B43004E6C10 /* libImplBrowser.dylib */,
+				F73211B521BB9B43004E6C10 /* libImplDesktopSharing.dylib */,
+				F73211C121BB9B43004E6C10 /* libImplFirewall.dylib */,
+				F73211E521BB9B44004E6C10 /* libImplHDEncryption.dylib */,
+				F73211B821BB9B43004E6C10 /* libImplInstantMessenger.dylib */,
+				F73211DE21BB9B44004E6C10 /* libImplP2p.dylib */,
+				F73211C621BB9B43004E6C10 /* libImplPatchManagementAgent.dylib */,
+				F73211DA21BB9B44004E6C10 /* libImplSoftwareProduct.dylib */,
+				F73211CF21BB9B44004E6C10 /* libImplSystemManagement.dylib */,
+				F73211CD21BB9B43004E6C10 /* libImplUrlFiltering.dylib */,
+				F73211C021BB9B43004E6C10 /* libImplVirtualMachine.dylib */,
+				F73211E821BB9B44004E6C10 /* libImplVpnClient.dylib */,
+				F73211E021BB9B44004E6C10 /* libInodePortalPt.dylib */,
+				F73211C721BB9B43004E6C10 /* libInodeSecurityAuth.dylib */,
+				F73211EC21BB9B44004E6C10 /* libInodeUtility.dylib */,
+				F73211CE21BB9B44004E6C10 /* libInodeX1Pt.dylib */,
+				F73211DB21BB9B44004E6C10 /* libOesisCore.dylib */,
+				F73211C521BB9B43004E6C10 /* libopencv_calib3d.3.4.0.dylib */,
+				F73211BD21BB9B43004E6C10 /* libopencv_core.3.4.0.dylib */,
+				F73211BE21BB9B43004E6C10 /* libopencv_dnn.3.4.0.dylib */,
+				F73211EA21BB9B44004E6C10 /* libopencv_features2d.3.4.0.dylib */,
+				F73211BC21BB9B43004E6C10 /* libopencv_flann.3.4.0.dylib */,
+				F73211D621BB9B44004E6C10 /* libopencv_highgui.3.4.0.dylib */,
+				F73211E921BB9B44004E6C10 /* libopencv_imgcodecs.3.4.0.dylib */,
+				F73211D721BB9B44004E6C10 /* libopencv_imgproc.3.4.0.dylib */,
+				F73211E621BB9B44004E6C10 /* libopencv_ml.3.4.0.dylib */,
+				F73211D921BB9B44004E6C10 /* libopencv_objdetect.3.4.0.dylib */,
+				F73211DC21BB9B44004E6C10 /* libopencv_photo.3.4.0.dylib */,
+				F73211C921BB9B43004E6C10 /* libopencv_shape.3.4.0.dylib */,
+				F73211E421BB9B44004E6C10 /* libopencv_stitching.3.4.0.dylib */,
+				F73211DF21BB9B44004E6C10 /* libopencv_superres.3.4.0.dylib */,
+				F73211B421BB9B43004E6C10 /* libopencv_video.3.4.0.dylib */,
+				F73211C321BB9B43004E6C10 /* libopencv_videoio.3.4.0.dylib */,
+				F73211D321BB9B44004E6C10 /* libopencv_videostab.3.4.0.dylib */,
+				F73211DD21BB9B44004E6C10 /* libtensorflow_framework.so */,
+				F73211EB21BB9B44004E6C10 /* libwx_base_carbon_net-2.8.0.dylib */,
+				F73211C421BB9B43004E6C10 /* libwx_base_carbon_xml-2.8.0.dylib */,
+				F73211BA21BB9B43004E6C10 /* libwx_base_carbon-2.8.0.dylib */,
+				F73211ED21BB9B44004E6C10 /* libwx_mac_adv-2.8.0.dylib */,
+				F73211D021BB9B44004E6C10 /* libwx_mac_aui-2.8.0.dylib */,
+				F73211C221BB9B43004E6C10 /* libwx_mac_core-2.8.0.dylib */,
+				F73211D821BB9B44004E6C10 /* libwx_mac_html-2.8.0.dylib */,
+				F73211E121BB9B44004E6C10 /* libwx_mac_qa-2.8.0.dylib */,
+				F73211D121BB9B44004E6C10 /* libwx_mac_richtext-2.8.0.dylib */,
+				F73211B921BB9B43004E6C10 /* libwx_mac_xrc-2.8.0.dylib */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -119,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F73211AD21BB9AD9004E6C10 /* main.cpp in Sources */,
+				F7EF9B5321BCE7EF0090FC63 /* QR_detect.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -240,6 +488,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				"HEADER_SEARCH_PATHS[arch=*]" = /usr/local/include;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/libtensorflow/1.12.0/lib,
+				);
+				"LIBRARY_SEARCH_PATHS[arch=*]" = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -248,6 +502,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					/usr/local/Cellar/libtensorflow/1.12.0/lib,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

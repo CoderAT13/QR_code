@@ -6,10 +6,19 @@
 //  Copyright © 2018 张涵健Coder.@. All rights reserved.
 //
 
-#include <iostream>
+#include "QR_detect.hpp"
+using namespace cv;
+using namespace std;
 
-int main(int argc, const char * argv[]) {
-    // insert code here...
-    std::cout << "Hello, World!\n";
+
+
+int main(int argc, char** argv) {
+    Mat src = imread("QR3.png");
+
+    QR_detecter test;
+    test.detect(src);
+    test.showCorners(0.1);
+
+    
     return 0;
 }
