@@ -76,7 +76,9 @@ bool QR_detecter::compare_sample(Mat &roi){
     if ((double)white_count/black_count > 0.7 || (double)white_count/black_count < 0.55){
         return false;
     }
-    cout << (double)white_count/black_count << " ";
+    //imwrite("sample"+to_string(rand()%10), roi);
+    
+    //cout << (double)white_count/black_count << " ";
     for (int t = 0; t <= 3; t++){
         Mat sample = imread("sample" + to_string(t) + ".png");
         Mat roi_dst = roi;
@@ -87,33 +89,32 @@ bool QR_detecter::compare_sample(Mat &roi){
 
         threshold(sample, sample, 150, 255, CV_THRESH_BINARY);
         threshold(roi_dst, roi_dst, 150, 255, CV_THRESH_BINARY);
-        /*
+
         imshow("sample", sample);
         waitKey(1);
         imshow("roi", roi_dst);
         waitKey(1);
-        */
+        
 
         int count = 0;
         for (int i = 0; i < sample.rows; i++){
             for (int j = 0; j < sample.cols; j++){
                 //cout << (int)sample.at<uchar>(i,j) <<","<< (int)roi_dst.at<uchar>(i,j) << endl;
-                if (sample.at<uchar>(i,j) == roi_dst.at<uchar>(i,j)){
+                //cout << (sample.at<uchar>(i,j) == roi_dst.at<uchar>(i,j)) << endl;
+                //printf("(%d,%d):%d %d\n",i,j,(int)sample.at<uchar>(i,j) ,(int)roi_dst.at<uchar>(i,j));
+                if ((int)sample.at<uchar>(i,j) == (int)roi_dst.at<uchar>(i,j)){
                     count ++;
                 }
             }
         }
         double rate = (float)count/(sample.rows*sample.cols);
         //double rate = getMSSIM(sample, roi_dst);
-        if (Rate < rate){
-            Rate = rate;
-        }
-
+        cout << "Rate" << t << ":" << rate << " ";
+        if (Rate < rate) Rate = rate;
     }
 
-
     cout << Rate << endl;
-    if (Rate > 0.66){
+    if (Rate > 0.6){
         return true;
     }
     return false;

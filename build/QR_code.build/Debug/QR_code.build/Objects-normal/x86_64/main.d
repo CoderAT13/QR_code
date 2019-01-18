@@ -1,6 +1,5 @@
 dependencies: \
   /Users/zhanghanjian/Desktop/CoderAt/air_robot/QR_code/QR_code/main.cpp \
-  /Users/zhanghanjian/Desktop/CoderAt/air_robot/QR_code/QR_code/QR_detect.hpp \
   /usr/local/include/opencv2/opencv.hpp \
   /usr/local/include/opencv2/opencv_modules.hpp \
   /usr/local/include/opencv2/core.hpp \
