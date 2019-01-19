@@ -9,26 +9,41 @@
 #ifndef QR_detect_hpp
 #define QR_detect_hpp
 
-#include <opencv2/opencv.hpp>
-#include <math.h>
 #include <iostream>
-#include <stdio.h>
-#include <stdlib.h>
-using namespace cv;
+#include <cmath>
+#include <opencv2/opencv.hpp>
+
+#include <zbar.h>
 using namespace std;
+using namespace cv;
+using namespace zbar;
 
 class QR_detecter{
 private:
-    bool compare_sample(Mat &roi);
-    bool isXCorner(Mat &image);
-    bool isYCorner(Mat &image);
-    Mat transformCorner(Mat &image, RotatedRect &rect);
-    Mat output;
+    int data;
+    Mat result;
+    /* 截取图片中旋转矩形部分，返回Mat
+     * larger：以rect中心扩大rect截取范围的倍数
+     */
+    Mat transformCorner(Mat &image, RotatedRect &rect, float larger = 1);
+    /*
+     * 腐蚀处理提取第四章图片
+     */
+    Mat check_fourth(Mat& img);
+    /* 二次处理 */
+    Mat smaller_rect(Mat image);
+    /* 判断image里的四张图片能否识别 */
+    bool getQR(Mat image[]);
+    /* 逆时针旋转图片，angle是旋转度数（360一周） */
+    void Rotate(Mat &image,float angle);
+    //bool recursive_rotate_check(Mat QR_piece[], int num);
 public:
-    QR_detecter(){
-
-    }
-    void detect(Mat &src);
-    void showCorners(double time);
+    QR_detecter(){}
+    /* 输入4张图片，并提取其中的二维码 */
+    void detect(Mat A, Mat B, Mat C, Mat D);
+    /* 显示最终获得的二维码 */
+    void show_QR();
+    /* 显示二维码获得的数字 */
+    int get_number();
 };
 #endif /* QR_detect_hpp */

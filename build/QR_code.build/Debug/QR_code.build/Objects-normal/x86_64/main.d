@@ -1,5 +1,6 @@
 dependencies: \
   /Users/zhanghanjian/Desktop/CoderAt/air_robot/QR_code/QR_code/main.cpp \
+  /Users/zhanghanjian/Desktop/CoderAt/air_robot/QR_code/QR_code/QR_detect.hpp \
   /usr/local/include/opencv2/opencv.hpp \
   /usr/local/include/opencv2/opencv_modules.hpp \
   /usr/local/include/opencv2/core.hpp \
@@ -120,4 +121,9 @@ dependencies: \
   /usr/local/include/opencv2/videostab/fast_marching_inl.hpp \
   /usr/local/include/opencv2/videostab/deblurring.hpp \
   /usr/local/include/opencv2/videostab/wobble_suppression.hpp \
-  /usr/local/include/opencv2/videostab/ring_buffer.hpp
+  /usr/local/include/opencv2/videostab/ring_buffer.hpp \
+  /usr/local/include/zbar.h /usr/local/include/zbar/Exception.h \
+  /usr/local/include/zbar/Decoder.h /usr/local/include/zbar/Scanner.h \
+  /usr/local/include/zbar/Symbol.h /usr/local/include/zbar/Image.h \
+  /usr/local/include/zbar/ImageScanner.h /usr/local/include/zbar/Video.h \
+  /usr/local/include/zbar/Window.h /usr/local/include/zbar/Processor.h

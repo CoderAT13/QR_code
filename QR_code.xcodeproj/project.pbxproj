@@ -66,6 +66,7 @@
 		F732122521BB9B44004E6C10 /* libwx_base_carbon_net-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211EB21BB9B44004E6C10 /* libwx_base_carbon_net-2.8.0.dylib */; };
 		F732122621BB9B44004E6C10 /* libInodeUtility.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211EC21BB9B44004E6C10 /* libInodeUtility.dylib */; };
 		F732122721BB9B44004E6C10 /* libwx_mac_adv-2.8.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F73211ED21BB9B44004E6C10 /* libwx_mac_adv-2.8.0.dylib */; };
+		F74E8EC021F3092A004E7E1F /* libzbar.0.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = F74E8EBF21F3092A004E7E1F /* libzbar.0.dylib */; };
 		F7EF9B5321BCE7EF0090FC63 /* QR_detect.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F7EF9B5121BCE7EF0090FC63 /* QR_detect.cpp */; };
 /* End PBXBuildFile section */
 
@@ -142,6 +143,7 @@
 		F73211EB21BB9B44004E6C10 /* libwx_base_carbon_net-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_base_carbon_net-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_base_carbon_net-2.8.0.dylib"; sourceTree = "<group>"; };
 		F73211EC21BB9B44004E6C10 /* libInodeUtility.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libInodeUtility.dylib; path = ../../../../../../usr/local/lib/libInodeUtility.dylib; sourceTree = "<group>"; };
 		F73211ED21BB9B44004E6C10 /* libwx_mac_adv-2.8.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libwx_mac_adv-2.8.0.dylib"; path = "../../../../../../usr/local/lib/libwx_mac_adv-2.8.0.dylib"; sourceTree = "<group>"; };
+		F74E8EBF21F3092A004E7E1F /* libzbar.0.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libzbar.0.dylib; path = ../../../../../../usr/local/Cellar/zbar/0.10_9/lib/libzbar.0.dylib; sourceTree = "<group>"; };
 		F7EF9B5121BCE7EF0090FC63 /* QR_detect.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = QR_detect.cpp; sourceTree = "<group>"; };
 		F7EF9B5221BCE7EF0090FC63 /* QR_detect.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = QR_detect.hpp; sourceTree = "<group>"; };
 		F7EF9B5421BCF1940090FC63 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -152,6 +154,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F74E8EC021F3092A004E7E1F /* libzbar.0.dylib in Frameworks */,
 				F73211EE21BB9B44004E6C10 /* libopencv_video.3.4.0.dylib in Frameworks */,
 				F73211EF21BB9B44004E6C10 /* libImplDesktopSharing.dylib in Frameworks */,
 				F73211F021BB9B44004E6C10 /* libACEXML-5.6.9.dylib in Frameworks */,
@@ -246,6 +249,7 @@
 		F73211B321BB9B43004E6C10 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F74E8EBF21F3092A004E7E1F /* libzbar.0.dylib */,
 				F7EF9B5421BCF1940090FC63 /* Info.plist */,
 				F73211B721BB9B43004E6C10 /* libACE-5.6.9.dylib */,
 				F73211C821BB9B43004E6C10 /* libACE.dylib */,
@@ -492,6 +496,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/libtensorflow/1.12.0/lib,
+					/usr/local/Cellar/zbar/0.10_9/lib,
 				);
 				"LIBRARY_SEARCH_PATHS[arch=*]" = /usr/local/lib;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -505,6 +510,7 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					/usr/local/Cellar/libtensorflow/1.12.0/lib,
+					/usr/local/Cellar/zbar/0.10_9/lib,
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
