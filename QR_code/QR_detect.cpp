@@ -8,6 +8,43 @@
 
 #include "QR_detect.hpp"
 int global_count = 0;
+
+bool cmp_dis1(cv::Point2f a,cv::Point2f b){
+    return (a.x+a.y)<(b.x+b.y);
+}
+
+bool cmp_dis3(cv::Point2f a,cv::Point2f b){
+    return (a.x-a.y) < (b.x - b.y);
+}
+
+bool cmp_dis2(cv::Point2f a,cv::Point2f b){
+    if (a.y < b.y) return true;
+    else if (a.y == b.y){
+        if (a.x < b.x) return true;
+        else return false;
+    }
+    else return false;
+}
+
+Point2f getCrossPoint(Vec4i LineA, Vec4i LineB)
+{
+    double ka, kb;
+    ka = (double)(LineA[3] - LineA[1]) / (double)(LineA[2] - LineA[0]); //求出LineA斜率
+    kb = (double)(LineB[3] - LineB[1]) / (double)(LineB[2] - LineB[0]); //求出LineB斜率
+
+    Point2f crossPoint;
+    crossPoint.x = (ka*LineA[0] - LineA[1] - kb*LineB[0] + LineB[1]) / (ka - kb);
+    crossPoint.y = (ka*kb*(LineA[0] - LineB[0]) + ka*LineB[1] - kb*LineA[1]) / (ka - kb);
+    return crossPoint;
+}
+
+float getDistance(Point2f a, Point2f b){
+    return sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
+}
+
+int th = 0;
+
+
 Mat QR_detecter::transformCorner(Mat &image, RotatedRect &rect, float larger ){
     Point2f points[4];
     Mat imag = image;
@@ -47,11 +84,11 @@ Mat QR_detecter::transformCorner(Mat &image, RotatedRect &rect, float larger ){
     return result1;
 }
 
-Mat QR_detecter::check_fourth(Mat& img){
+Mat QR_detecter::check_fourth(Mat& img, int size){
 
     Mat out;
     //获取自定义核
-    Mat element = getStructuringElement(MORPH_RECT, Size(25, 25)); //第一个参数MORPH_RECT表示矩形的卷积核，当然还可以选择椭圆形的、交叉型的
+    Mat element = getStructuringElement(MORPH_RECT, Size(size, size)); //第一个参数MORPH_RECT表示矩形的卷积核，当然还可以选择椭圆形的、交叉型的
     //腐蚀操作
     erode(img, out, element);
 
@@ -67,15 +104,20 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
     src[1] = B;
     src[2] = C;
     src[3] = D;
-
     /* 提取4张图片中的唯一 QR-Code 部分 */
 
     for (int x = 0; x < 4; x++){
+        th = x;
         has_check = false;
+        resize(src[x], src[x], Size(src[x].cols/2,src[x].rows/2));
         Mat image = src[x];
+        GaussianBlur(src[x], image, Size(3,3), 0);
+        //GaussianBlur(image, image, Size(3,3), 0);
+        //imshow("image", image);
+        //waitKey(1);
         Mat qr,qr_raw,qr_gray,qr_thres;
 
-        resize(image, image, Size(image.cols/2,image.rows/2));
+
 
         /* 检测三个定位点的方法 */
 
@@ -86,7 +128,13 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
         cvtColor(image,gray,CV_RGB2GRAY);        // Convert Image captured from Image Input to GrayScale
         Canny(gray, edges, 100 , 200, 3);        // Apply Canny edge detection on the gray image
         findContours( edges, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
-
+        /*
+        for (int i = 0; i < contours.size(); i++){
+            drawContours(image, contours, i, Scalar(255,255,0));
+        }
+         */
+        //imshow("image", image);
+        //waitKey(1);
         int mark;
         int marks[100];
         mark = 0;                                // Reset all detected marker count for this frame
@@ -96,7 +144,7 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
 
         for( int i = 0; i < contours.size(); i++ )
         {    mu[i] = moments( contours[i], false );
-            mc[i] = Point2f( mu[i].m10/mu[i].m00 , mu[i].m01/mu[i].m00 );
+             mc[i] = Point2f( mu[i].m10/mu[i].m00 , mu[i].m01/mu[i].m00 );
         }
 
         for( int i = 0; i < contours.size(); i++ )
@@ -120,12 +168,14 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
         }
         if (mark > 0){
             has_check = true;
+            drawContours(image, contours, marks[0], Scalar(255,255,0));
+            imshow("src"+to_string(th), image);
+            waitKey(1);
             RotatedRect rect = minAreaRect(contours[marks[0]]);
-            Mat qr_roi = transformCorner(image, rect,2);
-            cvtColor(qr_roi, qr_roi, CV_BGR2GRAY);
-            threshold(qr_roi, qr_roi, 100, 255, CV_THRESH_BINARY);
-            if (tmp_count < 4 ){
-                QR_piece[tmp_count++] = smaller_rect(transformCorner(image, rect, (float)1));
+            Mat qr_roi = transformCorner(image, rect,2.1);
+            Mat warp_dst = image.clone();
+            if (tmp_count < 4){
+                QR_piece[tmp_count++] = smaller_rect(qr_roi);
             }
             //drawContours( image, contours, marks[i] , Scalar(255,200,0), 2, 8, hierarchy, 0 );
         }
@@ -133,8 +183,10 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
 
         /* 腐蚀处理 */
         if (!has_check){
-            Mat tmp = check_fourth(image);
+            Mat tmp = check_fourth(image,25);
 
+            //imshow("tmp", tmp);
+            //waitKey(1);
             if(image.empty()){ cerr << "ERR: Unable to find image.\n" << endl;
                 return;
             }
@@ -152,19 +204,21 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
             Canny(gray, edges, 100 , 200, 3);        // Apply Canny edge detection on the gray image
 
             findContours( edges, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE); // Find contours with hierarchy
-            /*
+
              for (int i = 0; i < contours.size(); i ++){
-             drawContours( image, contours, i , Scalar(255,200,0), 2, 8, hierarchy, 0 );
+                 drawContours( image, contours, i , Scalar(255,200,0), 2, 8, hierarchy, 0 );
              }
-             */
+            //imshow("image", image);
+            //waitKey(1);
 
             /* 通过腐蚀获得轮廓，用旋转矩形画出来，并生成图片 */
             for (int i = 0; i < contours.size(); i++){
-                if (contourArea(contours[i])<900) continue;
+                //cout<<contourArea(contours[i]) << endl;
+                if (contourArea(contours[i])<150) continue;
                 RotatedRect rect = minAreaRect(contours[i]);
                 //Mat qr_roi = transformCorner(image, rect, (float)23/27);
                 if (tmp_count < 4 ){
-                    QR_piece[tmp_count++] = smaller_rect(transformCorner(image, rect, (float)1));
+                    QR_piece[tmp_count++] = smaller_rect(transformCorner(src[x], rect, (float)1));
                 }
                 break;
             }
@@ -172,12 +226,15 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
 
     }
 
+    if (tmp_count < 4){
+        cout << "doesn't Detect 4" << endl;
+        return;
+    }
     /* 处理截取下来的1/4 QR-Code */
     for(int i = 0; i < 4; i++){
         cvtColor(QR_piece[i], QR_piece[i], CV_RGB2GRAY);
         threshold(QR_piece[i], QR_piece[i], 100, 255, THRESH_BINARY);
         resize(QR_piece[i],QR_piece[i],Size(200,200),0,0,INTER_LINEAR);
-
     }
 
 
@@ -225,6 +282,10 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
 }
 
 void QR_detecter::show_QR(){
+    if (result.empty()) {
+        cout << "No result" << endl;
+        return;
+    }
     imshow("QR_code",result);
     waitKey(1);
 }
@@ -237,22 +298,214 @@ int QR_detecter::get_number(){
 }
 
 Mat QR_detecter::smaller_rect(Mat image){
+    imshow("src"+to_string(th), image);
+    waitKey(1);
+    Mat tmp = image.clone();
     vector<vector<Point> > contours;
     vector<Vec4i> hierarchy;
+    cv::Point2f srcTri[4];//原图坐标
+    cv::Point2f dstTri[4];//映射之后的坐标
+    cv::Point2f point[1000];
     Mat gray(image.size(), CV_MAKETYPE(image.depth(), 1));            // To hold Grayscale Image
     Mat edges(image.size(), CV_MAKETYPE(image.depth(), 1));            // To hold Grayscale Image
+    //Mat blk = check_fourth(image, 10);
     cvtColor(image,gray,CV_RGB2GRAY);        // Convert Image captured from Image Input to GrayScale
-    Canny(gray, edges, 100 , 200, 3);        // Apply Canny edge detection on the gray image
-    findContours( edges, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
+    //threshold(gray, gray, 90, 255, THRESH_BINARY);
+    //imshow("src"+to_string(th), gray);
+    //waitKey(1);
 
+    Canny(gray, edges, 150 , 200, 3);        // Apply Canny edge detection on the gray image
+    findContours( edges, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
+    cvtColor(tmp,gray,CV_RGB2GRAY);        // Convert Image captured from Image Input to GrayScale
+    /*
+    for (int i = 0; i < contours.size(); i++){
+        drawContours(image, contours, i, Scalar(255,0,255));
+    }
+     */
     vector<Point> total;
     for (int i = 0; i < contours.size(); i++){
+        if (contourArea(contours[i])>15)
         for (int j = 0; j < contours[i].size(); j++){
             total.push_back(contours[i][j]);
         }
     }
-    RotatedRect rect = minAreaRect(total);
-    return transformCorner(image, rect, 1);
+    vector<vector<Point>> hull(1);
+    convexHull(total, hull[0]);
+    vector<Vec4i> lines;
+    for (int i = 0; i < hull.size(); i++){
+        drawContours(image, hull, i, Scalar(255,255,0));
+    }
+    for (int i = 0; i < hull[0].size(); i++){
+        if (i!=hull[0].size()-1)
+            lines.push_back(Vec4i(hull[0][i].x,hull[0][i].y,hull[0][i+1].x,hull[0][i+1].y));
+        else
+            lines.push_back(Vec4i(hull[0][i].x,hull[0][i].y,hull[0][0].x,hull[0][0].y));
+    }
+    vector<Point2f> corners;
+    for (unsigned int i = 0; i<lines.size(); i++)
+    {
+        for (unsigned int j = i + 1; j<lines.size(); j++)
+        {
+            cv::Point2f pt = getCrossPoint(lines[i], lines[j]);
+            if (pt.x >= 0 && pt.y >= 0)
+            {
+                corners.push_back(pt);
+            }
+        }
+    }
+    for (int i = 0; i < corners.size(); i++){
+        float min = 65535;
+        for (int j= 0; j < hull[0].size(); j++)
+            if (getDistance(corners[i],hull[0][j]) < min){
+                min = getDistance(corners[i],hull[0][j]);
+            }
+        if ( min < 30){
+            corners[i].x = (corners[i].x >= image.cols)? image.cols-1:corners[i].x;
+            corners[i].x = (corners[i].x < 0)? 0: corners[i].x;
+            corners[i].y = (corners[i].y >= image.rows)? image.rows-1:corners[i].y;
+            corners[i].y = (corners[i].y < 0)? 0: corners[i].y;
+            hull[0].push_back(corners[i]);
+            circle(image, corners[i], 5, Scalar(100,0,0));
+        }
+    }
+
+    /*
+    for (int i = 0 ; i < total.size(); i++){
+        bool is_hull = false;
+        Point2f p[2];
+        int n = 0;
+        for (int j = 0; j < hull[0].size(); j++){
+            if (total[i] == hull[0][j]) {
+                is_hull = true;
+            }
+        }
+        if (!is_hull){
+            for (int j = 0; j < hull[0].size(); j++){
+                if (getDistance(total[i],hull[0][j]) < image.rows/25) {
+                    p[n++] = hull[0][j];
+                }
+            }
+            if (n == 2){
+                Point2f a((p[0].x+p[1].x)/2,(p[0].y+p[1].y)/2);
+                Point2f b(total[i].x+(total[i].x-a.x)*3,total[i].y+(total[i].y-a.y)*3);
+                if (b.x < 0) b.x = 0;
+                if (b.x >= image.cols) b.x = image.cols-1;
+                if (b.y < 0) b.y = 0;
+                if (b.y >= image.rows) b.y = image.rows-1;
+                circle(image, b,10, Scalar(255,0,255));
+            }
+        }
+    }
+    */
+    //imshow("images",image);
+    //waitKey(1);
+    //RotatedRect rect = minAreaRect(total);
+    std::sort(total.begin(), total.end(), cmp_dis1);
+    //std::sort(hull[0].begin(), hull[0].end(), cmp_dis2);
+
+    Point2f center[4];
+    float radius[4];
+    int count = 0;
+    vector<Point> qur[4];
+    for (int i = 0; i < hull[0].size(); i++){
+        if (hull[0][i].y <= image.rows/2 && hull[0][i].x <= image.cols/2)
+            qur[0].push_back(hull[0][i]);
+
+        if (hull[0][i].y < image.rows/2 && hull[0][i].x > image.cols/2)
+            qur[1].push_back(hull[0][i]);
+
+        if (hull[0][i].y > image.rows/2 && hull[0][i].x < image.cols/2)
+            qur[2].push_back(hull[0][i]);
+
+        if (hull[0][i].y >= image.rows/2 && hull[0][i].x >= image.cols/2)
+            qur[3].push_back(hull[0][i]);
+    }
+    for (int i = 0 ; i < 4 ; i ++){
+        minEnclosingCircle(qur[i], center[i], radius[i]);
+        for (int j = 0; j < qur[i].size(); j++){
+            if (abs(getDistance(center[i], qur[i][j])-radius[i]) < 10){
+                //circle(image,hull[0][i],10,Scalar(0,0,255));
+                point[count++] = qur[i][j];
+            }
+        }
+    }
+    //minEnclosingCircle(hull[0], center, radius);
+
+    sort(point, point+count, cmp_dis1);
+    srcTri[0]=point[0];
+    srcTri[2]=point[count-1];
+
+    sort(point, point+count, cmp_dis3);
+    srcTri[1]=point[0];
+    srcTri[3]=point[count-1];
+
+
+    /*
+    RotatedRect rect = minAreaRect(hull[0]);
+    Point2f rect_corner[4];
+    rect.points(rect_corner);
+    sort(point, point+4, cmp_dis1);
+    for (int k = 0 ; k < 4 ; k++){
+        point[k] = rect_corner[abs(k-3)];
+        for (int i = 0 ; i < hull[0].size(); i++){
+            if (getDistance(point[k], rect_corner[k]) > getDistance(hull[0][i], rect_corner[k])){
+                point[k] = hull[0][i];
+            }
+        }
+    }
+    for (int i = 0; i < 4; i++){
+        circle(image,point[i],10,Scalar(255,0,0));
+    }
+
+    sort(point,point+4, cmp_dis1);
+     */
+    for (int i = 0; i < 4; i++){
+        circle(image,srcTri[i],10,Scalar(0,0,255));
+        imshow("circle", image);
+        waitKey(1);
+    }
+
+    /*
+    //rect.points(point);
+    //std::sort(point,point+4,cmp_dis1);
+    //sort(point,point+4,cmp_dis1);
+    
+    srcTri[0]=point[0];
+    srcTri[1]=point[1];
+    srcTri[2]=point[3];
+    srcTri[3]=point[2];
+     */
+    dstTri[0]=cv::Point2f(0,0);
+    dstTri[1]=cv::Point2f(0,image.rows);
+    dstTri[2]=cv::Point2f(image.rows,image.rows);
+    dstTri[3]=cv::Point2f(image.rows,0);
+    cv::Mat warp_mat(2,3,CV_32FC1);
+    warp_mat=cv::getPerspectiveTransform(srcTri,dstTri);// 求得仿射变换
+    Mat warp_dst=cv::Mat::zeros( image.rows, image.rows, image.type() );
+    warpPerspective(tmp,warp_dst,warp_mat,warp_dst.size());// 对源图像应用上面求得的仿射变换
+    //std::sort(hull[0].begin(),hull[0].end(),cmp_dis1);
+
+    /*
+    vector<Point> fill;
+    fill.push_back(Point(0,0));
+    fill.push_back(Point(0,image.rows));
+    fill.push_back(Point(image.cols,image.rows));
+    fill.push_back(Point(image.cols,0));
+    vector<vector<Point>> whole;
+    whole.push_back(fill);
+    cv::fillPoly(image, whole, cv::Scalar(0, 0, 0));//fillPoly函数的第二个参数是二维数组！！
+    cv::polylines(image, hull, true, cv::Scalar(255, 255, 255), 2, cv::LINE_AA);//第2个参数可以采用contour或者contours，均可
+    cv::fillPoly(image, hull, cv::Scalar(255, 255, 255));//fillPoly函数的第二个参数是二维数组！！
+    //FindCornersForContours(hull[0], srcTri);
+     */
+    //FindCornersForContours(hull[0], point);
+    imshow("src"+to_string(th), image);
+    waitKey(1);
+    imshow("warp"+to_string(th), warp_dst);
+    waitKey(1);
+
+    //return transformCorner(image, rect, 1);
+    return warp_dst;
 }
 
 void QR_detecter::Rotate(Mat &image,float angle){
@@ -274,6 +527,8 @@ bool QR_detecter::getQR(Mat QR_piece[]){
     hconcat(QR_piece[0],QR_piece[1],combine1);//行排列   a+b=combine1
     hconcat(QR_piece[2],QR_piece[3],combine2);
     vconcat(combine1,combine2,combine);//列排列  combine1+combine2=combine
+    //imshow("combine", combine);
+    //waitKey(1);
     //adaptiveThreshold( combine, combine, 255, CV_ADAPTIVE_THRESH_MEAN_C, CV_THRESH_BINARY, 21,0);
     //threshold(combine, combine, 30, 200.0, CV_THRESH_OTSU + CV_THRESH_BINARY_INV);
     //============ratation test===================//
@@ -307,4 +562,46 @@ bool QR_detecter::getQR(Mat QR_piece[]){
     return true;
 }
 
-
+bool QR_detecter::FindCornersForContours(vector<Point> bigestContour, Point2f* res){
+    Point2f corner[4];
+    int corners_num = 0;
+    int icount = (int)bigestContour.size();
+    float fmax = -1;//用于保存局部最大值
+    int   imax = -1;
+    bool  bstart = false;
+    for (int i=0;i<(int)bigestContour.size();i++){
+        Point2f pa = (Point2f)bigestContour[(i+icount-7)%icount];
+        Point2f pb = (Point2f)bigestContour[(i+icount+7)%icount];
+        Point2f pc = (Point2f)bigestContour[i];
+        //两支撑点距离
+        float fa = getDistance(pa,pb);
+        float fb = getDistance(pa,pc)+getDistance(pb,pc);
+        float fang = fa/fb;
+        float fsharp = 1-fang;
+        if (fsharp>0.05){
+            bstart = true;
+            if (fsharp>fmax){
+                fmax = fsharp;
+                imax = i;
+            }
+        }else{
+            if (bstart){
+                //circle(board,bigestContour[imax],10,Scalar(255),1);
+                //circle(src,bigestContour[imax],10,Scalar(255,255,255),1);
+                if (corners_num <= 4)
+                    corner[corners_num++] = bigestContour[imax];
+                imax  = -1;
+                fmax  = -1;
+                bstart = false;
+            }
+        }
+    }
+    if(corners_num >= 3){
+        sort(corner, corner+4, cmp_dis1);
+        for (int i = 0; i < 3; i++){
+            res[i] = corner[i];
+        }
+        return true;
+    }
+    return false;
+}

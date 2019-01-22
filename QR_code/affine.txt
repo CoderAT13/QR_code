@@ -1,0 +1,186 @@
+//
+//  QR_detect.hpp
+//  QR_code
+//
+//  Created by 张涵健 on 2018/12/9.
+//  Copyright © 2018 张涵健Coder.@. All rights reserved.
+//
+
+#include "QR_detect.hpp"
+
+
+
+float getDistance(Point2f a, Point2f b){
+    return sqrt((a.x-b.x)*(a.x-b.x)+(a.y-b.y)*(a.y-b.y));
+}
+
+int main(){
+    /*
+    Mat a = imread("a.jpg");
+    Mat b = imread("b.jpg");
+    Mat c = imread("c.jpg");
+    Mat d = imread("d.jpg");
+     */
+    Point2f srcTri[3];
+    Point2f dstTri[4];
+    QR_detecter tool;
+    Mat rot_mat( 2, 3, CV_32FC1 );
+    Mat warp_mat( 2, 3, CV_32FC1 );
+    Mat src, warp_dst, warp_rotate_dst;
+    Mat qr,qr_raw,qr_gray,qr_thres;
+    VideoCapture cap(0);
+    while(1){
+        //src = imread("affine.jpg");
+        cap >> src;
+        Mat src1 = src;
+        resize(src, src, Size(src.cols/2,src.rows/2));
+        GaussianBlur(src, src, Size(3,3), 0);
+        GaussianBlur(src, src, Size(3,3), 0);
+        vector<vector<Point> > contours;
+        vector<Vec4i> hierarchy;
+        Mat gray(src.size(), CV_MAKETYPE(src.depth(), 1));            // To hold Grayscale Image
+        Mat edges(src.size(), CV_MAKETYPE(src.depth(), 1));
+        cvtColor(src,gray,CV_RGB2GRAY);        // Convert Image captured from Image Input to GrayScale
+        Canny(gray, edges, 100 , 200, 3);        // Apply Canny edge detection on the gray image
+        findContours( edges, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE);
+
+
+        /*
+         for(int i = 0; i < contours.size(); ){
+             //drawContours( src, contours, i , Scalar(0,200,0), 2, 8, hierarchy, 0 );
+             if (contourArea(contours[i]) < 50){
+                 contours.erase(tmp+i);
+                 hierarchy.erase(tmp2+i);
+                 continue;
+             }
+             i++;
+         }
+         */
+
+
+        int mark;
+        int marks[100];
+        mark = 0;                                // Reset all detected marker count for this frame
+        // Get Moments for all Contours and the mass centers
+        vector<Moments> mu(contours.size());
+        vector<Point2f> mc(contours.size());
+        //vector<Point> corners = goodFeaturesToTrack_Demo(src,gray,0, 0);
+
+        for( int i = 0; i < contours.size(); i++ )
+        {
+            mu[i] = moments( contours[i], false );
+            mc[i] = Point2f( mu[i].m10/mu[i].m00 , mu[i].m01/mu[i].m00 );
+        }
+
+        for( int i = 0; i < contours.size(); i++ )
+        {
+            int k=i;
+            int c=0;
+
+            while(hierarchy[k][2] != -1)
+            {
+                k = hierarchy[k][2] ;
+                c = c+1;
+            }
+            if(hierarchy[k][2] != -1)
+                c = c+1;
+
+            if (c >= 5)
+            {
+                marks[mark] = i;        // i.e., A and B are already found, assign current contour to C
+                mark = mark + 1 ;
+            }
+        }
+        Mat res;
+        if (mark > 0){
+            drawContours( src, contours, marks[0] , Scalar(255,200,0), 2, 8, hierarchy, 0 );
+            //int target = marks[0];
+            vector<Point> bigestContour = contours[marks[0]];
+            Point2f corner[4];
+            int corners_num = 0;
+            int icount = (int)bigestContour.size();
+            float fmax = -1;//用于保存局部最大值
+            int   imax = -1;
+            bool  bstart = false;
+            for (int i=0;i<(int)bigestContour.size();i++){
+                Point2f pa = (Point2f)bigestContour[(i+icount-7)%icount];
+                Point2f pb = (Point2f)bigestContour[(i+icount+7)%icount];
+                Point2f pc = (Point2f)bigestContour[i];
+                //两支撑点距离
+                float fa = getDistance(pa,pb);
+                float fb = getDistance(pa,pc)+getDistance(pb,pc);
+                float fang = fa/fb;
+                float fsharp = 1-fang;
+                if (fsharp>0.05){
+                    bstart = true;
+                    if (fsharp>fmax){
+                        fmax = fsharp;
+                        imax = i;
+                    }
+                }else{
+                    if (bstart){
+                        //circle(board,bigestContour[imax],10,Scalar(255),1);
+                        circle(src,bigestContour[imax],10,Scalar(255,255,255),1);
+                        if (corners_num <= 4)
+                            corner[corners_num++] = bigestContour[imax];
+                        imax  = -1;
+                        fmax  = -1;
+                        bstart = false;
+                    }
+                }
+            }
+            if(corners_num == 4){
+                Point2f tmp[4];
+                int tmp_count = 0;
+                for (int i = 0; i < src.rows; i++){
+                    for (int j = 0; j < 4; j++){
+                        if (corner[j].y == i) tmp[tmp_count++] = corner[j];
+                    }
+                }
+                for (int i = 0; i < tmp_count-1; i++){
+                    if(tmp[i].y == tmp[i+1].y){
+                        Point2f hold = tmp[i+1];
+                        tmp[i+1] = tmp[i];
+                        tmp[i] = hold;
+                    }
+                }
+                corner[0] = tmp[0];
+                corner[1] = tmp[1];
+                corner[2] = tmp[3];
+                corner[3] = tmp[2];
+
+                dstTri[0] = Point2f(50,50);
+                dstTri[1] = Point2f(dstTri[0].x,dstTri[0].y+100);
+                dstTri[2] = Point2f(dstTri[0].x+100, dstTri[0].y+100);
+                dstTri[3] = Point2f(dstTri[0].x+100, dstTri[0].y);
+                //RotatedRect rect = minAreaRect(bigestContour);
+
+                warp_mat = getPerspectiveTransform( corner, dstTri );
+                warpPerspective( src1, res, warp_mat, warp_dst.size() );
+                res = res(Rect(0,0,200,200));
+
+                //res = tool.transformCorner(src, rect, 2);
+
+                imshow("res", res);
+                waitKey(1);
+            }
+        }
+        imshow("src", src);
+        waitKey(1);
+
+
+        //createTrackbar("MaxCorners:", source_window, &maxCorners, maxTrackbar, goodFeaturesToTrack_Demo);
+
+    }
+
+
+    /*
+    QR_detecter test;
+    test.detect(a, d, b, c);
+    test.show_QR();
+    cout << test.get_number() << endl;
+     */
+    return 0;
+}
+
+
