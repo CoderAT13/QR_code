@@ -3,9 +3,9 @@
 
 int main(){
     Mat a = imread("rb.jpg");
-    Mat b = imread("ra.jpg");
-    Mat c = imread("rc.jpg");
-    Mat d = imread("rd.jpg");
+    Mat b = imread("rc.jpg");
+    Mat c = imread("rd.jpg");
+    Mat d = imread("ra.jpg");
 
     QR_detecter t;
     t.detect(a, b, c, d);

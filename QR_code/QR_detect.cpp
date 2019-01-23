@@ -31,7 +31,10 @@ Point2f getCrossPoint(Vec4i LineA, Vec4i LineB)
     double ka, kb;
     ka = (double)(LineA[3] - LineA[1]) / (double)(LineA[2] - LineA[0]); //求出LineA斜率
     kb = (double)(LineB[3] - LineB[1]) / (double)(LineB[2] - LineB[0]); //求出LineB斜率
-
+    /*
+    if ((abs(ka) > 0.5 && abs(ka) < 1.5) || (abs(kb) > 0.5 && abs(kb) <1.5))
+        return Point2f(-66666,-66666);
+     */
     Point2f crossPoint;
     crossPoint.x = (ka*LineA[0] - LineA[1] - kb*LineB[0] + LineB[1]) / (ka - kb);
     crossPoint.y = (ka*kb*(LineA[0] - LineB[0]) + ka*LineB[1] - kb*LineA[1]) / (ka - kb);
@@ -111,6 +114,10 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
         has_check = false;
         resize(src[x], src[x], Size(src[x].cols/2,src[x].rows/2));
         Mat image = src[x];
+        Mat res;
+        resize(image, res, Size(src[x].cols/3,src[x].rows/3));
+        imshow("image"+to_string(x), res);
+        waitKey(1);
         GaussianBlur(src[x], image, Size(3,3), 0);
         //GaussianBlur(image, image, Size(3,3), 0);
         //imshow("image", image);
@@ -168,14 +175,43 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
         }
         if (mark > 0){
             has_check = true;
-            drawContours(image, contours, marks[0], Scalar(255,255,0));
-            imshow("src"+to_string(th), image);
-            waitKey(1);
+            //drawContours(image, contours, marks[0], Scalar(255,255,0));
+            //imshow("src"+to_string(th), image);
+            //waitKey(1);
             RotatedRect rect = minAreaRect(contours[marks[0]]);
             Mat qr_roi = transformCorner(image, rect,2.1);
+            Mat tmp1[4];
+            tmp1[0] = qr_roi(Rect(0, 0, 3*qr_roi.cols/4, 3*qr_roi.rows/4));
+            tmp1[1] = qr_roi(Rect(qr_roi.cols/4, 0, 3*qr_roi.cols/4, 3*qr_roi.rows/4));
+            tmp1[2] = qr_roi(Rect(0, qr_roi.rows/4, 3*qr_roi.cols/4, 3*qr_roi.rows/4));
+            tmp1[3] = qr_roi(Rect(qr_roi.cols/4, qr_roi.rows/4, 3*qr_roi.cols/4, 3*qr_roi.rows/4));
+            vector<vector<Point>> tmp_contours[4];
+            vector<Vec4i> hierarchy[4];
+            float area[4];
+            for(int i = 0; i < 4; i++){
+                //imshow("tmp"+to_string(i), tmp1[i]);
+                //waitKey(1);
+                cvtColor(tmp1[i], gray, CV_RGB2GRAY);
+                Canny(gray, edges, 100, 200, 3);
+                area[i] = 0;
+                findContours(edges, tmp_contours[i], hierarchy[i], RETR_TREE, CHAIN_APPROX_SIMPLE);
+                for (int k = 0; k < tmp_contours[i].size(); k++){
+                    area[i] += contourArea(tmp_contours[i][k]);
+                }
+            }
+            int max = 0;
+            Mat result;
+            for (int i = 0 ; i < 4; i++){
+                if (area[i]>max){
+                    max = area[i];
+                    result = tmp1[i];
+                }
+            }
+            //imshow("result", result);
+            //waitKey(1);
             Mat warp_dst = image.clone();
             if (tmp_count < 4){
-                QR_piece[tmp_count++] = smaller_rect(qr_roi);
+                QR_piece[tmp_count++] = smaller_rect(result);
             }
             //drawContours( image, contours, marks[i] , Scalar(255,200,0), 2, 8, hierarchy, 0 );
         }
@@ -201,21 +237,29 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
 
 
             cvtColor(tmp,gray,CV_RGB2GRAY);        // Convert Image captured from Image Input to GrayScale
+            threshold(gray, gray, 100, 255, THRESH_BINARY);
             Canny(gray, edges, 100 , 200, 3);        // Apply Canny edge detection on the gray image
-
             findContours( edges, contours, hierarchy, RETR_TREE, CHAIN_APPROX_SIMPLE); // Find contours with hierarchy
 
+            /*
              for (int i = 0; i < contours.size(); i ++){
                  drawContours( image, contours, i , Scalar(255,200,0), 2, 8, hierarchy, 0 );
              }
-            //imshow("image", image);
-            //waitKey(1);
-
+             */
             /* 通过腐蚀获得轮廓，用旋转矩形画出来，并生成图片 */
             for (int i = 0; i < contours.size(); i++){
                 //cout<<contourArea(contours[i]) << endl;
-                if (contourArea(contours[i])<150) continue;
+                //if (contourArea(contours[i])<3000) continue;
+
+                //imshow("image", image);
+                //waitKey(1);
                 RotatedRect rect = minAreaRect(contours[i]);
+                if (abs((float)rect.size.width/rect.size.height-1) > 0.1 ||
+                    rect.size.width*rect.size.height < 10000)
+                    continue;
+                //drawContours( image, contours, i , Scalar(0,0,255), 2, 8, hierarchy, 0 );
+                resize(image, image, Size(image.cols/2,image.rows/2));
+
                 //Mat qr_roi = transformCorner(image, rect, (float)23/27);
                 if (tmp_count < 4 ){
                     QR_piece[tmp_count++] = smaller_rect(transformCorner(src[x], rect, (float)1));
@@ -233,8 +277,12 @@ void QR_detecter::detect(Mat A, Mat B, Mat C, Mat D){
     /* 处理截取下来的1/4 QR-Code */
     for(int i = 0; i < 4; i++){
         cvtColor(QR_piece[i], QR_piece[i], CV_RGB2GRAY);
-        threshold(QR_piece[i], QR_piece[i], 100, 255, THRESH_BINARY);
+        threshold(QR_piece[i], QR_piece[i], 150, 255, THRESH_BINARY);
         resize(QR_piece[i],QR_piece[i],Size(200,200),0,0,INTER_LINEAR);
+    }
+    for(int i = 0; i < 4; i++){
+        imshow("qr_p"+to_string(i), QR_piece[i]);
+        waitKey(1);
     }
 
 
@@ -298,9 +346,12 @@ int QR_detecter::get_number(){
 }
 
 Mat QR_detecter::smaller_rect(Mat image){
-    imshow("src"+to_string(th), image);
-    waitKey(1);
+    //imshow("src"+to_string(th), image);
+    //waitKey(1);
+
     Mat tmp = image.clone();
+
+
     vector<vector<Point> > contours;
     vector<Vec4i> hierarchy;
     cv::Point2f srcTri[4];//原图坐标
@@ -342,9 +393,9 @@ Mat QR_detecter::smaller_rect(Mat image){
             lines.push_back(Vec4i(hull[0][i].x,hull[0][i].y,hull[0][0].x,hull[0][0].y));
     }
     vector<Point2f> corners;
-    for (unsigned int i = 0; i<lines.size(); i++)
+    for (unsigned int i = 0; i < lines.size(); i++)
     {
-        for (unsigned int j = i + 1; j<lines.size(); j++)
+        for (unsigned int j = i + 1; j< lines.size(); j++)
         {
             cv::Point2f pt = getCrossPoint(lines[i], lines[j]);
             if (pt.x >= 0 && pt.y >= 0)
@@ -355,15 +406,23 @@ Mat QR_detecter::smaller_rect(Mat image){
     }
     for (int i = 0; i < corners.size(); i++){
         float min = 65535;
+        /*
+        corners[i].x = (corners[i].x >= image.cols && corners[i].x - image.cols < 5)? image.cols-1:corners[i].x;
+        corners[i].x = (corners[i].x < 0 && corners[i].x > -5)? 0: corners[i].x;
+        corners[i].y = (corners[i].y >= image.rows && corners[i].y - image.rows < 5)? image.rows-1:corners[i].y;
+        corners[i].y = (corners[i].y < 0 && corners[i].y > -5)? 0: corners[i].y;
+        */
+
+        //circle(image, corners[i], 5, Scalar(100,0,0));
         for (int j= 0; j < hull[0].size(); j++)
             if (getDistance(corners[i],hull[0][j]) < min){
                 min = getDistance(corners[i],hull[0][j]);
             }
         if ( min < 30){
-            corners[i].x = (corners[i].x >= image.cols)? image.cols-1:corners[i].x;
-            corners[i].x = (corners[i].x < 0)? 0: corners[i].x;
-            corners[i].y = (corners[i].y >= image.rows)? image.rows-1:corners[i].y;
-            corners[i].y = (corners[i].y < 0)? 0: corners[i].y;
+            corners[i].x = (corners[i].x >= image.cols )? image.cols-1:corners[i].x;
+            corners[i].x = (corners[i].x < 0 )? 0: corners[i].x;
+            corners[i].y = (corners[i].y >= image.rows )? image.rows-1:corners[i].y;
+            corners[i].y = (corners[i].y < 0 )? 0: corners[i].y;
             hull[0].push_back(corners[i]);
             circle(image, corners[i], 5, Scalar(100,0,0));
         }
@@ -439,7 +498,8 @@ Mat QR_detecter::smaller_rect(Mat image){
     srcTri[1]=point[0];
     srcTri[3]=point[count-1];
 
-
+    if (th == 0)
+        srcTri[3].x += 5;
     /*
     RotatedRect rect = minAreaRect(hull[0]);
     Point2f rect_corner[4];
@@ -503,7 +563,6 @@ Mat QR_detecter::smaller_rect(Mat image){
     waitKey(1);
     imshow("warp"+to_string(th), warp_dst);
     waitKey(1);
-
     //return transformCorner(image, rect, 1);
     return warp_dst;
 }
