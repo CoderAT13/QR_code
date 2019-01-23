@@ -34,7 +34,6 @@ private:
     /* 逆时针旋转图片，angle是旋转度数（360一周） */
     void Rotate(Mat &image,float angle);
     bool FindCornersForContours(vector<Point> bigestContours, Point2f* point);
-    /* 外接圆法轮廓角点检测 （实用）*/
 public:
     QR_detecter(){}
     /* 输入4张图片，并提取其中的二维码 */

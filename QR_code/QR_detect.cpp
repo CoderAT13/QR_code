@@ -380,6 +380,7 @@ Mat QR_detecter::smaller_rect(Mat image){
             total.push_back(contours[i][j]);
         }
     }
+    // 直线交点法角点检测
     vector<vector<Point>> hull(1);
     convexHull(total, hull[0]);
     vector<Vec4i> lines;
@@ -461,7 +462,7 @@ Mat QR_detecter::smaller_rect(Mat image){
     //RotatedRect rect = minAreaRect(total);
     std::sort(total.begin(), total.end(), cmp_dis1);
     //std::sort(hull[0].begin(), hull[0].end(), cmp_dis2);
-
+    // 外接圆角点识别
     Point2f center[4];
     float radius[4];
     int count = 0;
@@ -501,6 +502,7 @@ Mat QR_detecter::smaller_rect(Mat image){
     if (th == 0)
         srcTri[3].x += 5;
     /*
+     // 与旋转矩形角点最近轮廓点法角点检测
     RotatedRect rect = minAreaRect(hull[0]);
     Point2f rect_corner[4];
     rect.points(rect_corner);
